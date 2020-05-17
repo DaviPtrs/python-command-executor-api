@@ -1,0 +1,16 @@
+version: '3.2'
+services: 
+  command_trigger:
+    container_name: command_trigger
+    image: python:latest
+    working_dir: /app
+    command: ["python", "-u" ,"server.py"]
+    network_mode: host
+    volumes: 
+      - '.:/app'
+      - '/var/run/docker.sock'
+      - '/usr/bin/docker'
+      - '/usr/local/bin/docker-compose'
+    environment: 
+      - PYTHONPATH=/app
+      - PORT=8080
